@@ -1,7 +1,6 @@
 import {addList,removeList,editName} from './manage-lists';
 import {list,todo} from './classes';
 import {listArray} from './storage'
-let d= new list('yo','there');
+import {loadPage} from './render-page'
 
-addList(d);
-console.log(listArray);
+loadPage();

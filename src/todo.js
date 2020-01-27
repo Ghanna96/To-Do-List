@@ -14,3 +14,5 @@ const removeToDo=(index,list)=>{
 const displayToDo=(list)=>{
     return [...list.toDo]
 };
+
+export {addToDo, removeToDo, displayToDo}
