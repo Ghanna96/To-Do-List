@@ -1,0 +1,18 @@
+.main {
+    height: 86vmax;
+    max-width: 100vw;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 2fr;
+    background-color: aqua;
+}
+.hidden {
+    display: none;
+}
+.red{
+    background-color: red;
+    height: 10vh;
+}
+.green{
+    background-color: green;
+}
