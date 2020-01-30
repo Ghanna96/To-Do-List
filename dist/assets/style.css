@@ -13,16 +13,15 @@
     border: 1px solid;
     height: 9vh;
 }
-.list{
+.projects{
     border: 1px solid;
 }
 .todo{
-    padding: 5vh;
+    padding: 2vh;
 }
 .button{
     margin: .4em;
     padding: 1em;
-    width: 40%;
     cursor: pointer;
     background: #e1e1e1;
     text-decoration: none;
@@ -32,4 +31,8 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-
+#add-todo{
+    font-size: 2rem;
+    padding: 0.5em;
+    text-align: center;
+}

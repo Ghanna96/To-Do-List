@@ -1,8 +1,10 @@
+import { format } from 'date-fns'
 //class to create objects in the to do list
+
 class todo{
     constructor(title,description,date,priority,completed){
         this.title=title;
-        this.description=description;
+        this.description=description ? description : 'none';
         this.date=date;
         this.priority=priority;
         this.completed=completed;
@@ -24,6 +26,9 @@ class list{
         this.description= description ? description : 'none';
         this.creationDate= new Date();
         this.toDo=[];
+    }
+    get info(){
+        return `${this.title}  (${format(this.creationDate, 'dd-MM-yyyy')})`
     }
 }
 
