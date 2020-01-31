@@ -24,10 +24,11 @@ const loadPage=()=>{
     for(let i in mainEl){ //attaching sections
         bodyEl.main.appendChild(mainEl[i]);
     }
-
      let listButton= newButton('add new list','add-list');
      listButton.classList.add('hvr-bounce-to-bottom');
      mainEl.lists.appendChild(listButton);
+     let formList= newDiv('add-list');
+     mainEl.lists.appendChild(formList);
 
      listButton.addEventListener('click',()=>{
         listForm();

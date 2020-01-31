@@ -1,4 +1,5 @@
-import {newButton,newDiv} from './DOM-functions';
+import {newButton,newDiv,purgeContent} from './DOM-functions';
+import { createList } from './manage';
 
 const todoForm=()=>{
     const todoForm= newDiv('todo-form');
@@ -29,18 +30,26 @@ const todoForm=()=>{
 }
 
 const listForm=()=>{
-    const formElements = {
-        title: document.createElement('h4'),
-        titleInput: document.createElement('input'),
-        desc: document.createElement('h4'),
-        descInput: document.createElement('textarea')
-    }
-    const tdlist= document.querySelector('.projects');
-    formElements.title.textContent= 'List title';
-    formElements.desc.textContent= 'List description (optional)';
+    const formElements =`<h2>New list</h2>
+                        <h4>List Title</h4>
+                        <input type="text" id="title">   
+                        <h4>Description(Optional)</h4>
+                        <textarea id="description"></textarea>
+                        <div>   
+                        <button id="submit"> submit</button>
+                        <button id="cancel"> cancel</button>
+                        </div>`;
+    let div= document.querySelector('.add-list');
+    div.innerHTML=formElements;
+    //purge list html
+    document.querySelector('#cancel').addEventListener('click',()=>{
+        purgeContent(div);
+    });
+    document.querySelector('#submit').addEventListener('click',()=>{
+        createList();
+        purgeContent(div);
+    });
+    //create new list
 
-    for(let i in formElements){
-        tdlist.appendChild(formElements[i]);
-    }
 }
 export {todoForm,listForm}

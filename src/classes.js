@@ -24,11 +24,11 @@ class list{
     constructor(title,description){
         this.title= title ? title: 'New List' ;
         this.description= description ? description : 'none';
-        this.creationDate= new Date();
+        this.creationDate= format(new Date(), 'dd-MM-yyyy');
         this.toDo=[];
     }
     get info(){
-        return `${this.title}  (${format(this.creationDate, 'dd-MM-yyyy')})`
+        return `${this.title}  (${this.creationDate})`
     }
 }
 

@@ -25,6 +25,7 @@ const loadLists=()=>{
     )
     return listDiv
 }
+
 const renderTodos=(index)=>{
     let div= newDiv('todo-list'),
     button= newButton('+','add-todo');
@@ -36,5 +37,10 @@ const renderTodos=(index)=>{
     div.appendChild(todos);
     return div
 }
+const purgeContent=(content)=>{
+    while (content.firstChild) {    
+        content.removeChild(content.firstChild);
+    }
+}
 
-export {newButton,newDiv,loadLists,renderTodos}
+export {newButton,newDiv,loadLists,renderTodos,purgeContent}
