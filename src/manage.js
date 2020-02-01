@@ -1,6 +1,6 @@
 import {listArray} from './storage';
 import {list,todo} from './classes';
-
+import {displayLists} from './DOM-functions';
 //create new list
 const addList=(obj)=>{
     listArray.push(obj);
@@ -32,13 +32,14 @@ const displayToDo=(list)=>{
 
 const createList=()=>{
     const lst={
-        title: document.getElementById('title').nodeValue,
-        description: document.getElementById('description').nodeValue
+        title: document.getElementById('title').value,
+        description: document.getElementById('description').value
     };
     let newObj= new list(lst.title,lst.description);
     addList(newObj);
-    console.log(listArray);
-}
+    console.log(newObj);
+    displayLists();
+};
 
 
 export {createList};

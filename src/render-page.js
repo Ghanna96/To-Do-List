@@ -1,4 +1,4 @@
-import {newButton,newDiv} from './DOM-functions'
+import {newButton,newDiv,displayLists} from './DOM-functions'
 
 import{listForm} from './form';
 
@@ -14,25 +14,32 @@ const loadPage=()=>{
         lists: newDiv('projects'),
         todos: newDiv('todo')
     };
+    const listEl={
+        listButton: newButton('add new list','add-list'),
+        formList: newDiv('add-list'),
+        div:newDiv('my-lists')
+    };
     const title= document.createElement('h1'); //page title
     bodyEl.header.appendChild(title);
+    //adding classes
     bodyEl.header.classList.add('red');
     title.textContent='To-Do List App';
+    listEl.listButton.classList.add('hvr-bounce-to-bottom');
+    //appending elements
     for(let i in bodyEl){   //page structure
         body.appendChild(bodyEl[i]);
     }
     for(let i in mainEl){ //attaching sections
         bodyEl.main.appendChild(mainEl[i]);
     }
-     let listButton= newButton('add new list','add-list');
-     listButton.classList.add('hvr-bounce-to-bottom');
-     mainEl.lists.appendChild(listButton);
-     let formList= newDiv('add-list');
-     mainEl.lists.appendChild(formList);
-
-     listButton.addEventListener('click',()=>{
+    for(let i in listEl){
+        mainEl.lists.appendChild(listEl[i]);
+    }
+    //adding events
+     listEl.listButton.addEventListener('click',()=>{
         listForm();
      })
+     displayLists();
 }
 
 

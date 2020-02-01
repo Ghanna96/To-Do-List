@@ -17,14 +17,20 @@ const newDiv=(className)=>{
 }
 
 //render list
-const loadLists=()=>{
-    let listDiv= newDiv('my-lists');
-    
-    listDiv.innerHTML= listArray.map((el,i)=>
-    `<div class='list' id='${i}'> ${el.info}</div>`
-    )
-    return listDiv
-}
+const displayLists=()=>{
+    let listDiv= document.querySelector('.my-lists');
+    let divArr= listArray.map((el,i)=>{
+        let d= newDiv('list');
+        d.textContent=el.info;
+        d.id=i;
+        return d
+    }
+    );
+    purgeContent(listDiv);
+    for (let i  in divArr){
+        listDiv.appendChild(divArr[i]);
+    }
+};
 
 const renderTodos=(index)=>{
     let div= newDiv('todo-list'),
@@ -43,4 +49,4 @@ const purgeContent=(content)=>{
     }
 }
 
-export {newButton,newDiv,loadLists,renderTodos,purgeContent}
+export {newButton,newDiv,displayLists,renderTodos,purgeContent}
