@@ -5,4 +5,32 @@ let listArray=[ new list('Default List 1')
                 new list('Default List 3')
             ];
 
-export{listArray};
+//create new list
+const addList=(obj)=>{
+    listArray.push(obj);
+};
+//remove list
+const removeList=(index)=>{
+    listArray.splice(index,1);
+};
+//change list title
+const editName=(index,newName)=>{
+    listArray[index].title= newName;
+};
+
+//add todo
+const addToDo= (obj,list) =>{
+    list.toDo.push(obj);
+};
+
+//remove todo at index
+const removeToDo=(index,list)=>{ 
+    list.toDo.splice(index,1);
+};
+
+//return todos in a give list
+const displayToDo=(list)=>{
+    return [...list.toDo]
+};
+
+export{listArray,addList};

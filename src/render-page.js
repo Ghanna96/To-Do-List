@@ -1,4 +1,5 @@
-import {newButton,newDiv,displayLists} from './DOM-functions'
+import {newButton,newDiv} from './DOM-functions'
+import {displayTodos,listInfo,loadLists} from './manage'
 
 import{listForm} from './form';
 
@@ -19,6 +20,12 @@ const loadPage=()=>{
         formList: newDiv('add-list'),
         div:newDiv('my-lists')
     };
+    const todoEl={
+        // button: newButton('New To-Do','add-todo'),
+        info: newDiv('list-inf'),
+        div: newDiv('todo-list')
+    }
+    //page title
     const title= document.createElement('h1'); //page title
     bodyEl.header.appendChild(title);
     //adding classes
@@ -29,25 +36,31 @@ const loadPage=()=>{
     for(let i in bodyEl){   //page structure
         body.appendChild(bodyEl[i]);
     }
-    for(let i in mainEl){ //attaching sections
+    //attaching sections
+    for(let i in mainEl){ 
         bodyEl.main.appendChild(mainEl[i]);
     }
-    for(let i in listEl){
+    //populating list section
+    for(let i in listEl){ 
         mainEl.lists.appendChild(listEl[i]);
     }
+    //populating todo section
+    for (let i in todoEl){
+        mainEl.todos.appendChild(todoEl[i])
+    }
     //adding events
-     listEl.listButton.addEventListener('click',()=>{
+    listEl.listButton.addEventListener('click',()=>{
         listForm();
-     })
-     displayLists();
+    })
+    loadLists();
+
+    document.querySelectorAll('.list').forEach((x)=>{
+        x.addEventListener('click',()=>{
+            listInfo(x.id);
+            displayTodos(x.id);
+        })
+    });
 }
 
-
-
-
-// let todoButton= newButton('Add to do', 'add-todo');
-// mainEl.todos.appendChild(todoButton);
-
-// todoButton.classList.add("hvr-rectangle-out");
 
 export {loadPage}

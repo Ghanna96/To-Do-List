@@ -27,9 +27,15 @@ class list{
         this.creationDate= format(new Date(), 'dd-MM-yyyy');
         this.toDo=[];
     }
-    get info(){
-        return `${this.title}  (${this.creationDate})`
+    get _date(){
+       return `created in ${this.creationDate}`
     }
+    get _description(){
+       if(this.description!=='none'){
+           return `List description: ${this.description}`
+        }
+   }
+   
 }
 
 export {list,todo};
