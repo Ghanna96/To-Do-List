@@ -19,8 +19,8 @@ const editName=(index,newName)=>{
 };
 
 //add todo
-const addToDo= (obj,list) =>{
-    list.toDo.push(obj);
+const addToDo= (obj,index) =>{
+    listArray[index].toDo.push(obj);
 };
 
 //remove todo at index
@@ -33,4 +33,4 @@ const displayToDo=(list)=>{
     return [...list.toDo]
 };
 
-export{listArray,addList};
+export{listArray,addList,addToDo};

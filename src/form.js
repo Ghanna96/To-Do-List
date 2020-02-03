@@ -1,31 +1,40 @@
 import {newButton,newDiv,purgeContent} from './DOM-functions';
-import { createList } from './manage';
+import { createList,getToDo} from './manage';
 
-const todoForm=()=>{
+const todoForm=(list)=>{
     const todoForm= newDiv('todo-form');
     const formElements = {
         h4: document.createElement('h4'),
-        title: document.createElement('span'),
+        title: document.createElement('h5'),
         titleInput: document.createElement('input'),
-        desc: document.createElement('span'),
+        desc: document.createElement('h5'),
         descInput: document.createElement('textarea'),
-        dueDate: document.createElement('span'),
+        dueDate: document.createElement('h5'),
         dateInput: document.createElement('input'),
         prio: document.createElement('span'),
         prioInput: document.createElement('select'),
-        buttons: document.createElement('div'),
-    }
+        buttons: newDiv('buttons'),
+        submit: newButton('Add'),
+        cancel: newButton('Cancel')
+    };
     formElements.h4.textContent = 'Add a New Todo:';
     formElements.title.textContent = 'Title:';
+    formElements.titleInput.id='todo-title';
     formElements.desc.textContent = 'Description (optional):';
     formElements.dueDate.textContent = 'Due Date (optional):';
     formElements.prio.textContent = 'Priority:';
-    formElements.buttons.setAttribute('class', 'buttons');
     formElements.dateInput.setAttribute('type', 'date');
+    formElements.titleInput.id='todo-title';
+    formElements.descInput.id='todo-desc';
+    formElements.dateInput.id='todo-date';
     for (let element in formElements) {
         todoForm.appendChild(formElements[element])
         formElements[element].style.marginBottom = '10px'
     }
+    formElements.submit.addEventListener('click',()=>{
+        list.toDo.push(getToDo());
+        console.log(list);
+    });
     return todoForm
 }
 
@@ -50,6 +59,5 @@ const listForm=()=>{
         purgeContent(div);
     });
     //create new list
-
 }
 export {todoForm,listForm}

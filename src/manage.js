@@ -1,6 +1,7 @@
-import {addList,listArray} from './storage';
+import {addList,listArray,addToDo} from './storage';
 import {list,todo} from './classes';
 import {newButton,newDiv,purgeContent} from './DOM-functions';
+import { todoForm } from './form';
 
 
 //create new object with the data entered
@@ -13,6 +14,17 @@ const createList=()=>{
     addList(newObj);
     loadLists();
 };
+//create new todo with data entered
+const getToDo=()=>{
+    const td={
+        title: document.getElementById('todo-title').value,
+        description: document.getElementById('todo-desc').value,
+        date: document.getElementById('todo-date').value
+    };
+    let newObj= new todo(td.title,td.description,td.date);
+    return newObj
+};
+
 //render lists on DOM 
 const loadLists=()=>{
     const listDiv= document.querySelector('.my-lists');
@@ -48,15 +60,17 @@ const listInfo=(i)=>{
     div.appendChild(h4);
     div.appendChild(desc);
 };
-
+//display todos when a list is clicked
 const displayTodos=(index)=>{
     let div= document.querySelector('.todo-list'),
-        button= newButton('+','add-todo');
+        button= newButton('New to-do','add-todo');
     purgeContent(div);
     div.appendChild(button);
     button.addEventListener('click',()=>{
+        button.style.display='none';
+        div.appendChild(todoForm(listArray[index])); //parameter to know the current list
+    });
 
-    })
     // let todos= listArray[index].todos.map((el)=>{
     //     let d= newDiv('todo');
     //     d.textContent= el.title;
@@ -68,4 +82,4 @@ const displayTodos=(index)=>{
 }
 
 
-export {createList,loadLists,displayTodos,listInfo};
+export {createList,loadLists,displayTodos,listInfo,getToDo};

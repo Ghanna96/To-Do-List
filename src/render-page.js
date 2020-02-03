@@ -16,9 +16,9 @@ const loadPage=()=>{
         todos: newDiv('todo')
     };
     const listEl={
+        div:newDiv('my-lists'),
         listButton: newButton('add new list','add-list'),
-        formList: newDiv('add-list'),
-        div:newDiv('my-lists')
+        formList: newDiv('add-list')
     };
     const todoEl={
         // button: newButton('New To-Do','add-todo'),
@@ -48,6 +48,7 @@ const loadPage=()=>{
     for (let i in todoEl){
         mainEl.todos.appendChild(todoEl[i])
     }
+    
     //adding events
     listEl.listButton.addEventListener('click',()=>{
         listForm();

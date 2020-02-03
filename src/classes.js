@@ -5,7 +5,7 @@ class todo{
     constructor(title,description,date,priority,completed){
         this.title=title;
         this.description=description ? description : 'none';
-        this.date=date;
+        this.duedate=date;
         this.priority=priority;
         this.completed=completed;
     }
@@ -28,7 +28,7 @@ class list{
         this.toDo=[];
     }
     get _date(){
-       return `created in ${this.creationDate}`
+       return `creation date: ${this.creationDate}`
     }
     get _description(){
        if(this.description!=='none'){
