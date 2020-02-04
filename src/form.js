@@ -1,5 +1,5 @@
-import {newButton,newDiv,purgeContent} from './DOM-functions';
-import { createList,getToDo} from './manage';
+import {newButton,newDiv,purgeContent,hide} from './DOM-functions';
+import { createList,getToDo,renderToDo} from './manage';
 
 const todoForm=(list)=>{
     const todoForm= newDiv('todo-form');
@@ -33,7 +33,13 @@ const todoForm=(list)=>{
     }
     formElements.submit.addEventListener('click',()=>{
         list.toDo.push(getToDo());
-        console.log(list);
+        todoForm.remove();
+        hide(document.querySelector('#add-todo'));
+        renderToDo(list);
+    });
+    formElements.cancel.addEventListener('click',()=>{
+        todoForm.remove();
+        hide(document.querySelector('#add-todo'));
     });
     return todoForm
 }

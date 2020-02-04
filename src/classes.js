@@ -18,6 +18,9 @@ class todo{
             return
         }
     }
+    display(){
+        return `${this.title} ${this.description} ${this.duedate} ${this.priority}`
+    }
 }
 
 class list{

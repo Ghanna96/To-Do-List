@@ -1,6 +1,6 @@
 import {addList,listArray,addToDo} from './storage';
 import {list,todo} from './classes';
-import {newButton,newDiv,purgeContent} from './DOM-functions';
+import {newButton,newDiv,purgeContent,hide} from './DOM-functions';
 import { todoForm } from './form';
 
 
@@ -60,26 +60,33 @@ const listInfo=(i)=>{
     div.appendChild(h4);
     div.appendChild(desc);
 };
-//display todos when a list is clicked
+//display when a list is clicked
 const displayTodos=(index)=>{
-    let div= document.querySelector('.todo-list'),
-        button= newButton('New to-do','add-todo');
+    const tdEl={
+        button: newButton('New to-do','add-todo')
+    };
+    const div= document.querySelector('.todo-list');
     purgeContent(div);
-    div.appendChild(button);
-    button.addEventListener('click',()=>{
-        button.style.display='none';
+    for (let i in tdEl){
+        div.appendChild(tdEl[i]);
+    }
+    renderToDo(listArray[index]);
+    tdEl.button.addEventListener('click',()=>{
+        hide(tdEl.button);
         div.appendChild(todoForm(listArray[index])); //parameter to know the current list
     });
-
-    // let todos= listArray[index].todos.map((el)=>{
-    //     let d= newDiv('todo');
-    //     d.textContent= el.title;
-    // });
-
-    // for (let i in todos){
-    //     div.appendChild(todos[i]);
-    // }
+}
+//render todos
+const renderToDo=(list)=>{
+    let content= list.toDo.map((x)=>{
+        let td= newDiv('card');
+        td.textContent= x.display();
+        return td
+    });
+    const div= document.querySelector('.todo-list');
+    content.forEach((x)=>{
+        div.appendChild(x);
+    });
 }
 
-
-export {createList,loadLists,displayTodos,listInfo,getToDo};
+export {createList,loadLists,displayTodos,listInfo,getToDo,renderToDo};

@@ -23,4 +23,7 @@ const purgeContent=(content)=>{
     }
 }
 
-export {newButton,newDiv,purgeContent}
+const hide=(element)=>{
+    element.classList.toggle('hidden');
+}
+export {newButton,newDiv,purgeContent,hide}
