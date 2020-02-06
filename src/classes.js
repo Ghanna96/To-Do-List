@@ -35,7 +35,7 @@ class list{
     }
     get _description(){
        if(this.description!=='none'){
-           return `List description: ${this.description}`
+           return `Description: ${this.description}`
         }
    }
    

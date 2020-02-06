@@ -48,42 +48,56 @@ const loadLists=()=>{
 };
 //display list's info
 const listInfo=(i)=>{
+    const info={
+        h3: document.createElement('h3'),
+        h4: document.createElement('h4'),
+        desc: document.createElement('p'),
+        
+        title: document.createElement('h2'),
+    }
     const div= document.querySelector('.list-inf');
-    const h3= document.createElement('h3');
-    const h4= document.createElement('h4');
-    const desc= document.createElement('p');
     purgeContent(div);
-    h3.textContent=listArray[i].title;
-    h4.textContent=listArray[i]._date;
-    desc.textContent= listArray[i]._description;
-    div.appendChild(h3);
-    div.appendChild(h4);
-    div.appendChild(desc);
+    for (let i in info){
+        div.appendChild(info[i]);
+    }
+    
+    info.title.textContent='My todos';
+    info.h3.textContent=listArray[i].title;
+    info.h4.textContent=listArray[i]._date;
+    info.desc.textContent= listArray[i]._description;
+
 };
 //display when a list is clicked
 const displayTodos=(index)=>{
     const tdEl={
-        button: newButton('New to-do','add-todo')
+        head: newDiv('my-todos'),
+        add: newDiv('add'),
     };
+    const button= newButton('New to-do','add-todo');
+    tdEl.add.appendChild(button);
     const div= document.querySelector('.todo-list');
     purgeContent(div);
     for (let i in tdEl){
         div.appendChild(tdEl[i]);
     }
-    renderToDo(listArray[index]);
-    tdEl.button.addEventListener('click',()=>{
-        hide(tdEl.button);
+
+    button.addEventListener('click',(e)=>{
+        hide(e.target);
         div.appendChild(todoForm(listArray[index])); //parameter to know the current list
     });
+    renderToDo(listArray[index]);
+    
 }
 //render todos
 const renderToDo=(list)=>{
-    let content= list.toDo.map((x)=>{
+    let content= list.toDo.map((x,i)=>{
         let td= newDiv('card');
         td.textContent= x.display();
+        td.setAttribute('data-id',i);
         return td
     });
-    const div= document.querySelector('.todo-list');
+    const div= document.querySelector('.my-todos');
+    purgeContent(div);
     content.forEach((x)=>{
         div.appendChild(x);
     });

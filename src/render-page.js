@@ -4,9 +4,9 @@ import {displayTodos,listInfo,loadLists} from './manage'
 import{listForm} from './form';
 
 
-//render the page
+//managing page structure 
 const loadPage=()=>{
-    const body = document.querySelector('body');
+    const body = document.querySelector('#content');
     const bodyEl = {
         header: document.createElement('header'),
         main: newDiv('main')
@@ -16,21 +16,23 @@ const loadPage=()=>{
         todos: newDiv('todo')
     };
     const listEl={
+        title: document.createElement('section'),
         div:newDiv('my-lists'),
         listButton: newButton('add new list','add-list'),
         formList: newDiv('add-list')
     };
     const todoEl={
-        // button: newButton('New To-Do','add-todo'),
         info: newDiv('list-inf'),
         div: newDiv('todo-list')
     }
-    //page title
+    //title
     const title= document.createElement('h1'); //page title
-    bodyEl.header.appendChild(title);
-    //adding classes
-    bodyEl.header.classList.add('red');
+    const listTitle= document.createElement('h3');
     title.textContent='To-Do List App';
+    listTitle.textContent='My Lists';
+    bodyEl.header.appendChild(title);
+    listEl.title.appendChild(listTitle);
+    //adding classes
     listEl.listButton.classList.add('hvr-bounce-to-bottom');
     //appending elements
     for(let i in bodyEl){   //page structure
