@@ -1,26 +1,42 @@
+body{
+    margin:0 ;
+    overflow: hidden;
+    height: 100vh;
+}
+#content{
+    background-color: rgb(247, 247, 247);
+    height: 100%;
+}
 .main {
-    height: 89vh;
-    max-width: 100vw;
+    height: 100%;
+    max-width: 922px;
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 1fr 2fr;
-    border: 1px solid;
+    grid-template-columns: 1fr 3fr;
+    margin: auto;
 }
 .hidden {
     display: none;
 }
-.red{
-    border: 1px solid;
-    height: 9vh;
+header {
+    height: 6vh;
+    text-align: center;
+    background-color: #3398d1;
+}
+h1{
+    margin: 0;
+    color: #fff;
 }
 .projects{
-    border: 1px solid;
     padding: 2vh;
+    overflow: wrap;
 }
 .todo{
     padding: 2vh;
+    background-color: #fff;
 }
 .button{
+    display:inline-block;
     margin: .4em;
     padding: 1em;
     cursor: pointer;
@@ -33,7 +49,58 @@
 }
 
 #add-todo{
-    font-size: 2rem;
-    padding: 0.5em;
+    padding: 1em;
     text-align: center;
+}
+.list{
+    padding: 1em ;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.list:hover{
+    background-color: rgb(219, 219, 219);
+}
+.popUp{
+    background-color: rgba(0, 0, 0, 0.349);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	display: flex;
+	justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+.popUpContent{	
+    height: 25vh;
+	width: 20vw;
+	background-color: white;
+	text-align: center;
+	padding: 20px;
+	position: relative;
+    border-radius: 5px;
+}
+span{
+    display: block;
+}
+#title{
+    width: 90%;
+}
+#description{
+    width: 90%;
+    margin-bottom: 2vh;
+}
+.card{
+    padding: 1em;
+}
+.add{
+    padding: 1em;
+    margin-top: 2vh;
+}
+.todo-form{
+    font-size: 14px;
+    line-height: 21px;
+}
+.buttons{
+    height: 21px;
 }
