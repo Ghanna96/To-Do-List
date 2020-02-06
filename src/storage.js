@@ -33,4 +33,4 @@ const displayToDo=(list)=>{
     return [...list.toDo]
 };
 
-export{listArray,addList,addToDo};
+export{listArray,addList,addToDo,removeList};

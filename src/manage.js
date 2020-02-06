@@ -1,4 +1,4 @@
-import {addList,listArray,addToDo} from './storage';
+import {addList,listArray,removeList} from './storage';
 import {list,todo} from './classes';
 import {newButton,newDiv,purgeContent,hide} from './DOM-functions';
 import { todoForm } from './form';
@@ -50,13 +50,16 @@ const loadLists=()=>{
 const listInfo=(i)=>{
     const info={
         h3: document.createElement('h3'),
+        remove: newButton('Remove list','rmv-list'),
         h4: document.createElement('h4'),
         desc: document.createElement('p'),
-        
         title: document.createElement('h2'),
     }
     const div= document.querySelector('.list-inf');
     purgeContent(div);
+    if(!listArray[i]){
+        return
+    }
     for (let i in info){
         div.appendChild(info[i]);
     }
@@ -65,6 +68,12 @@ const listInfo=(i)=>{
     info.h3.textContent=listArray[i].title;
     info.h4.textContent=listArray[i]._date;
     info.desc.textContent= listArray[i]._description;
+    info.remove.addEventListener('click', ()=>{
+        removeList(i);
+        loadLists();
+        listInfo(0);
+        displayTodos(0);
+    })
 
 };
 //display when a list is clicked
@@ -77,13 +86,16 @@ const displayTodos=(index)=>{
     tdEl.add.appendChild(button);
     const div= document.querySelector('.todo-list');
     purgeContent(div);
+    if(!listArray[index]){
+        return
+    }
     for (let i in tdEl){
         div.appendChild(tdEl[i]);
     }
 
     button.addEventListener('click',(e)=>{
         hide(e.target);
-        div.appendChild(todoForm(listArray[index])); //parameter to know the current list
+        tdEl.add.appendChild(todoForm(listArray[index])); //parameter to know the current list
     });
     renderToDo(listArray[index]);
     
