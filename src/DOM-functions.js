@@ -22,8 +22,12 @@ const purgeContent=(content)=>{
         content.removeChild(content.firstChild);
     }
 }
-
+const newSpan=(txt)=>{
+    let span=document.createElement('span');
+    span.textContent=txt;
+    return span
+}
 const hide=(element)=>{
     element.classList.toggle('hidden');
 }
-export {newButton,newDiv,purgeContent,hide}
+export {newButton,newDiv,purgeContent,hide,newSpan}

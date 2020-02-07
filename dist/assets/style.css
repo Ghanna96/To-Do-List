@@ -80,9 +80,6 @@ h1{
 	position: relative;
     border-radius: 5px;
 }
-span{
-    display: block;
-}
 #title{
     width: 90%;
 }
@@ -92,6 +89,8 @@ span{
 }
 .card{
     padding: 1em;
+    display: flex;
+    justify-content: space-between;
 }
 .add{
     padding: 1em;
@@ -109,3 +108,15 @@ span{
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
 }
+.close {
+    position: relative;
+    float: right;
+    right: 10px;
+    font-size: 25px;
+    color: #333;
+    transform: rotate(45deg);
+    cursor: pointer;
+}
+.close:hover {
+    color: red;
+} 

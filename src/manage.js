@@ -1,6 +1,6 @@
-import {addList,listArray,removeList} from './storage';
+import {addList,listArray,removeList,removeToDo} from './storage';
 import {list,todo} from './classes';
-import {newButton,newDiv,purgeContent,hide} from './DOM-functions';
+import {newButton,newDiv,newSpan,purgeContent,hide} from './DOM-functions';
 import { todoForm } from './form';
 
 
@@ -97,15 +97,25 @@ const displayTodos=(index)=>{
         hide(e.target);
         tdEl.add.appendChild(todoForm(listArray[index])); //parameter to know the current list
     });
-    renderToDo(listArray[index]);
-    
+    renderToDo(listArray[index]);  
 }
 //render todos
 const renderToDo=(list)=>{
     let content= list.toDo.map((x,i)=>{
         let td= newDiv('card');
-        td.textContent= x.display();
+        let title= newSpan(x.title);
+        let date= newSpan(x.duedate);
+        let desc= newSpan(x.description);
+        let close=newDiv('close');
+        close.textContent='+';
+        td.appendChild(title);
+        td.appendChild(date);
+        td.appendChild(close);
         td.setAttribute('data-id',i);
+        close.addEventListener('click',()=>{
+            removeToDo(i,list);
+            td.remove();
+        })
         return td
     });
     const div= document.querySelector('.my-todos');
