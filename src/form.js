@@ -1,7 +1,6 @@
 import {newButton,newDiv,purgeContent,hide} from './DOM-functions';
 import { createList,getToDo,renderToDo} from './manage';
-
-const todoForm=(list)=>{
+const todoForm=(list,n)=>{
     const todoForm= newDiv('todo-form');
     const formElements = {
         h4: document.createElement('h4'),
@@ -29,15 +28,29 @@ const todoForm=(list)=>{
     }
     formElements.buttons.appendChild(submit);
     formElements.buttons.appendChild(cancel);
+    
+    if(typeof n == 'number'){
+       let ref=list.toDo[n];
+        formElements.titleInput.value=ref.title;
+        formElements.descInput.value=ref.description;
+        formElements.dateInput.value=ref.duedate;
+    }
     submit.addEventListener('click',()=>{
-        list.toDo.push(getToDo());
+        // check if the function is called to edit or to add a todo
+        if(typeof n == 'number'){ 
+            list.toDo[n]= getToDo();
+        }else{
+            hide(document.querySelector('#add-todo'));
+            list.toDo.push(getToDo());
+        }
         todoForm.remove();
-        hide(document.querySelector('#add-todo'));
         renderToDo(list);
     });
     cancel.addEventListener('click',()=>{
+        if(typeof n !== 'number'){ 
+            hide(document.querySelector('#add-todo'));
+        }
         todoForm.remove();
-        hide(document.querySelector('#add-todo'));
     });
     return todoForm
 }

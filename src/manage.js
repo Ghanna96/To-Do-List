@@ -95,26 +95,34 @@ const displayTodos=(index)=>{
 
     button.addEventListener('click',(e)=>{
         hide(e.target);
-        tdEl.add.appendChild(todoForm(listArray[index])); //parameter to know the current list
+        tdEl.add.appendChild(todoForm(listArray[index],false)); //parameter to know the current list
     });
     renderToDo(listArray[index]);  
 }
-//render todos
+//render array of nodes with all todos
 const renderToDo=(list)=>{
     let content= list.toDo.map((x,i)=>{
         let td= newDiv('card');
+        let titDiv= newDiv('info1');
+        let descDiv= newDiv('info2');
         let title= newSpan(x.title);
-        let date= newSpan(x.duedate);
-        let desc= newSpan(x.description);
+        let date= newSpan(`Due: ${x.duedate}`);
+        let desc= newSpan(`Description: ${x.description}`);
         let close=newDiv('close');
-        close.textContent='+';
-        td.appendChild(title);
-        td.appendChild(date);
         td.appendChild(close);
+        titDiv.appendChild(title);
+        td.appendChild(titDiv);
+        descDiv.appendChild(desc);
+        descDiv.appendChild(date);
+        td.appendChild(descDiv);
+        close.textContent='+';
         td.setAttribute('data-id',i);
         close.addEventListener('click',()=>{
             removeToDo(i,list);
             td.remove();
+        });
+        titDiv.addEventListener('click',function handle(){
+            td.appendChild(todoForm(list,i));
         })
         return td
     });
