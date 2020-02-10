@@ -1,7 +1,7 @@
 import {addList,listArray,removeList,removeToDo} from './storage';
 import {list,todo} from './classes';
 import {newButton,newDiv,newSpan,purgeContent,hide} from './DOM-functions';
-import { todoForm } from './form';
+import { todoForm, listForm } from './form';
 
 
 //create new object with the data entered
@@ -13,6 +13,14 @@ const createList=()=>{
     let newObj= new list(lst.title,lst.description);
     addList(newObj);
     loadLists();
+};
+const editList=(list)=>{
+    const edited={
+        title: document.getElementById('title').value,
+        description: document.getElementById('description').value
+    };
+    list.title= edited.title;
+    list.description= edited.description;
 };
 //create new todo with data entered
 const getToDo=()=>{
@@ -45,12 +53,14 @@ const loadLists=()=>{
             displayTodos(x.id);
         })
     });
+
 };
 //display list's info
 const listInfo=(i)=>{
     const info={
         h3: document.createElement('h3'),
         remove: newButton('Remove list','rmv-list'),
+        edit: newButton('Edit', 'edit-list'),
         h4: document.createElement('h4'),
         desc: document.createElement('p'),
         title: document.createElement('h2'),
@@ -73,8 +83,10 @@ const listInfo=(i)=>{
         loadLists();
         listInfo(0);
         displayTodos(0);
-    })
-
+    });
+    info.edit.addEventListener('click',()=>{
+        listForm(true,listArray[i]);
+    });
 };
 //display when a list is clicked
 const displayTodos=(index)=>{
@@ -109,6 +121,7 @@ const renderToDo=(list)=>{
         let date= newSpan(`Due: ${x.duedate}`);
         let desc= newSpan(`Description: ${x.description}`);
         let close=newDiv('close');
+        let form= newDiv('form');
         td.appendChild(close);
         titDiv.appendChild(title);
         td.appendChild(titDiv);
@@ -122,7 +135,9 @@ const renderToDo=(list)=>{
             td.remove();
         });
         titDiv.addEventListener('click',function handle(){
-            td.appendChild(todoForm(list,i));
+            purgeContent(form);
+            form.appendChild(todoForm(list,i));
+            td.appendChild(form);
         })
         return td
     });
@@ -133,4 +148,4 @@ const renderToDo=(list)=>{
     });
 }
 
-export {createList,loadLists,displayTodos,listInfo,getToDo,renderToDo};
+export {editList,createList,loadLists,displayTodos,listInfo,getToDo,renderToDo};

@@ -13,10 +13,6 @@ const addList=(obj)=>{
 const removeList=(index)=>{
     listArray.splice(index,1);
 };
-//change list title
-const editName=(index,newName)=>{
-    listArray[index].title= newName;
-};
 
 //add todo
 const addToDo= (obj,index) =>{
@@ -28,9 +24,6 @@ const removeToDo=(index,list)=>{
     list.toDo.splice(index,1);
 };
 
-//return todos in a give list
-const displayToDo=(list)=>{
-    return [...list.toDo]
-};
+
 
 export{listArray,addList,addToDo,removeList,removeToDo};

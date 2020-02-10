@@ -1,5 +1,6 @@
 import {newButton,newDiv,purgeContent,hide} from './DOM-functions';
-import { createList,getToDo,renderToDo} from './manage';
+import { createList,getToDo,renderToDo,editList,loadLists} from './manage';
+
 const todoForm=(list,n)=>{
     const todoForm= newDiv('todo-form');
     const formElements = {
@@ -55,23 +56,43 @@ const todoForm=(list,n)=>{
     return todoForm
 }
 
-const listForm=()=>{
-    const formElements =`
-                        <h4>List Title</h4>
-                        <input type="text" id="title">   
-                        <h4>Description(Optional)</h4>
-                        <input type="text" id="description">
-                        <div>   
-                        <button id="submit"> submit</button>
-                        <button id="cancel"> cancel</button>
-                        </div>`;
-    // let div= document.querySelector('.add-list');
+const listForm=(edit,list)=>{
+    const form = {
+        h4: document.createElement('h4'),
+        titleInput: document.createElement('input'),
+        desc: document.createElement('h4'),
+        descInput: document.createElement('input'),
+        buttons: newDiv('buttons'),
+    };
+    const submit= newButton('Add','submit');
+    const cancel= newButton('Cancel','cancel');
+    form.buttons.appendChild(submit);
+    form.buttons.appendChild(cancel);
+    form.h4.textContent='List Title';
+    form.desc.textContent='Description(optional)';
+    form.titleInput.id='title';
+    form.descInput.id='description';
     let div = newDiv('popUp');
     let content= newDiv('popUpContent');
-    content.innerHTML=formElements;
+    for (let el in form){
+        content.appendChild(form[el]);
+    } 
     div.appendChild(content);
     document.querySelector('#content').appendChild(div);
-    //purge list html
+    if(edit){
+        form.titleInput.value= list.title;
+        form.descInput.value=list.description;
+        document.querySelector('#cancel').addEventListener('click',()=>{
+            div.remove();
+         });
+         document.querySelector('#submit').addEventListener('click',()=>{
+            editList(list);
+            div.remove();
+            loadLists();
+         });
+        return
+    } 
+
     document.querySelector('#cancel').addEventListener('click',()=>{
        div.remove();
     });
@@ -82,3 +103,13 @@ const listForm=()=>{
     //create new list
 }
 export {todoForm,listForm}
+
+// const formElements =`
+// <h4>List Title</h4>
+// <input type="text" id="title">   
+// <h4>Description(Optional)</h4>
+// <input type="text" id="description">
+// <div>   
+// <button id="submit"> submit</button>
+// <button id="cancel"> cancel</button>
+// </div>`;
