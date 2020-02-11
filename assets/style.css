@@ -1,11 +1,14 @@
+html, body {
+    margin: 0;
+    height: 100%;
+}
 body{
-    margin:0 ;
-    overflow: hidden;
-    height: 100vh;
+    font-family: 'Roboto', sans-serif;
 }
 #content{
     background-color: rgb(247, 247, 247);
     height: 100%;
+    overflow: auto;
 }
 .main {
     height: 100%;
@@ -22,6 +25,7 @@ header {
     height: 6vh;
     text-align: center;
     background-color: #3398d1;
+    font-family: 'Lemonada', cursive;
 }
 h1{
     margin: 0;
@@ -88,9 +92,13 @@ h1{
     margin-bottom: 2vh;
 }
 .card{
-    padding: 1em;
-    /* display: flex;
-    justify-content: space-between; */
+    cursor: pointer;
+}
+.info1:hover{
+    background-color: #eee;
+}
+.info2:hover{
+    background-color: #dddddd;
 }
 .add{
     padding: 1em;
@@ -99,6 +107,8 @@ h1{
 .todo-form{
     font-size: 14px;
     line-height: 21px;
+    padding-bottom: 1.5em;
+    border-bottom: 1px solid #f0f0f0;
 }
 .buttons{
     height: 21px;
@@ -125,4 +135,8 @@ h1{
     display: flex;
     justify-content: space-between;
     padding: 0.5em;
+}
+#rmv-list{
+    background-color: #ff5757;
+    color: #eee;
 }
