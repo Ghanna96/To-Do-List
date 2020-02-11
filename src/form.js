@@ -32,6 +32,7 @@ const todoForm=(list,n)=>{
     
     if(typeof n == 'number'){
        let ref=list.toDo[n];
+        formElements.h4.textContent = 'Edit To-Do:';
         formElements.titleInput.value=ref.title;
         formElements.descInput.value=ref.description;
         formElements.dateInput.value=ref.duedate;

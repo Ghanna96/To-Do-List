@@ -61,10 +61,12 @@ const listInfo=(i)=>{
         h3: document.createElement('h3'),
         remove: newButton('Remove list','rmv-list'),
         edit: newButton('Edit', 'edit-list'),
-        h4: document.createElement('h4'),
+       // h4: document.createElement('h4'),
         desc: document.createElement('p'),
         title: document.createElement('h2'),
     }
+    info.remove.classList.add('hvr-bounce-out');
+    info.edit.classList.add('hvr-bounce-out');
     const div= document.querySelector('.list-inf');
     purgeContent(div);
     if(!listArray[i]){
@@ -75,8 +77,8 @@ const listInfo=(i)=>{
     }
     
     info.title.textContent='My todos';
-    info.h3.textContent=listArray[i].title;
-    info.h4.textContent=listArray[i]._date;
+    info.h3.textContent=listArray[i]._title;
+    //info.h4.textContent=listArray[i]._date;
     info.desc.textContent= listArray[i]._description;
     info.remove.addEventListener('click', ()=>{
         removeList(i);
@@ -95,6 +97,7 @@ const displayTodos=(index)=>{
         add: newDiv('add'),
     };
     const button= newButton('New to-do','add-todo');
+    button.classList.add('hvr-rectangle-out');
     tdEl.add.appendChild(button);
     const div= document.querySelector('.todo-list');
     purgeContent(div);
@@ -122,23 +125,29 @@ const renderToDo=(list)=>{
         let desc= newSpan(`Description: ${x.description}`);
         let close=newDiv('close');
         let form= newDiv('form');
-        td.appendChild(close);
         titDiv.appendChild(title);
+        titDiv.appendChild(close);
         td.appendChild(titDiv);
         descDiv.appendChild(desc);
         descDiv.appendChild(date);
         td.appendChild(descDiv);
         close.textContent='+';
         td.setAttribute('data-id',i);
+        hide(descDiv);
         close.addEventListener('click',()=>{
             removeToDo(i,list);
             td.remove();
         });
-        titDiv.addEventListener('click',function handle(){
+        function showForm(){
             purgeContent(form);
             form.appendChild(todoForm(list,i));
             td.appendChild(form);
-        })
+        }
+         function showDesc(){
+            hide(descDiv);
+         }
+        titDiv.addEventListener('click',showDesc);
+        descDiv.addEventListener('click',showForm);
         return td
     });
     const div= document.querySelector('.my-todos');

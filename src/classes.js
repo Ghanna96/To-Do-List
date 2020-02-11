@@ -4,7 +4,7 @@ import { format } from 'date-fns'
 class todo{
     constructor(title,description,date,priority,completed){
         this.title=title;
-        this.description=description ? description : 'none';
+        this.description=description ? description : '';
         this.duedate=date;
         this.priority=priority;
         this.completed=completed;
@@ -27,8 +27,8 @@ class list{
         this.creationDate= format(new Date(), 'dd-MM-yyyy');
         this.toDo=[];
     }
-    get _date(){
-       return `creation date: ${this.creationDate}`
+    get _title(){
+       return `${this.title} ( ${this.creationDate} )`
     }
     get _description(){
        if(this.description!=='none'){
