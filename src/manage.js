@@ -14,14 +14,7 @@ const createList=()=>{
     addList(newObj);
     loadLists();
 };
-const editList=(list)=>{
-    const edited={
-        title: document.getElementById('title').value,
-        description: document.getElementById('description').value
-    };
-    list.title= edited.title;
-    list.description= edited.description;
-};
+
 //create new todo with data entered
 const getToDo=()=>{
     const td={
@@ -157,4 +150,4 @@ const renderToDo=(list)=>{
     });
 }
 
-export {editList,createList,loadLists,displayTodos,listInfo,getToDo,renderToDo};
+export {createList,loadLists,displayTodos,listInfo,getToDo,renderToDo};

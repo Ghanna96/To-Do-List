@@ -1,5 +1,6 @@
 import {newButton,newDiv,purgeContent,hide} from './DOM-functions';
-import { createList,getToDo,renderToDo,editList,loadLists} from './manage';
+import { createList,getToDo,renderToDo,loadLists} from './manage';
+import { addToDo, editToDo,editList } from './storage';
 
 const todoForm=(list,n)=>{
     const todoForm= newDiv('todo-form');
@@ -40,10 +41,10 @@ const todoForm=(list,n)=>{
     submit.addEventListener('click',()=>{
         // check if the function is called to edit or to add a todo
         if(typeof n == 'number'){ 
-            list.toDo[n]= getToDo();
+            editToDo(list,n,getToDo());
         }else{
             hide(document.querySelector('#add-todo'));
-            list.toDo.push(getToDo());
+            addToDo(getToDo(),list);
         }
         todoForm.remove();
         renderToDo(list);
