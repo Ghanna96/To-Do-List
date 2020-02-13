@@ -1,4 +1,4 @@
-import {newButton,newDiv,purgeContent,hide} from './DOM-functions';
+import {newButton,newDiv,hide} from './DOM-functions';
 import { createList,getToDo,renderToDo,loadLists} from './manage';
 import { addToDo, editToDo,editList } from './storage';
 
@@ -9,9 +9,22 @@ const todoForm=(list,n)=>{
         titleInput: document.createElement('input'),
         descInput: document.createElement('input'),
         dateInput: document.createElement('input'),
-        //prioInput: document.createElement('select'),
+        prioInput: document.createElement('select'),
         buttons: newDiv('buttons')
     };
+    const choices = {
+        None: document.createElement('option'),
+        Casual: document.createElement('option'),
+        Important: document.createElement('option'),
+        Urgent: document.createElement('option'),
+    }
+
+    for (let element in choices) {
+        formElements.prioInput.appendChild(choices[element])
+        choices[element].textContent = `${element}`
+        choices[element].setAttribute('value', `${element}`)
+    }
+
     const submit= newButton('Add');
     const cancel= newButton('Cancel');
     formElements.h4.textContent = 'Add a New Todo:';
@@ -23,13 +36,15 @@ const todoForm=(list,n)=>{
     formElements.titleInput.id='todo-title';
     formElements.descInput.id='todo-desc';
     formElements.dateInput.id='todo-date';
+    formElements.prioInput.id='priority';
+    formElements.buttons.appendChild(submit);
+    formElements.buttons.appendChild(cancel);
+    
     for (let element in formElements) {
         todoForm.appendChild(formElements[element])
         formElements[element].style.padding = '1em';
         formElements[element].style.lineHeight= '21px';
     }
-    formElements.buttons.appendChild(submit);
-    formElements.buttons.appendChild(cancel);
     
     if(typeof n == 'number'){
        let ref=list.toDo[n];
@@ -102,16 +117,6 @@ const listForm=(edit,list)=>{
         createList();
        div.remove();
     });
-    //create new list
 }
 export {todoForm,listForm}
 
-// const formElements =`
-// <h4>List Title</h4>
-// <input type="text" id="title">   
-// <h4>Description(Optional)</h4>
-// <input type="text" id="description">
-// <div>   
-// <button id="submit"> submit</button>
-// <button id="cancel"> cancel</button>
-// </div>`;

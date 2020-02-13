@@ -5,6 +5,15 @@ import { todoForm, listForm } from './form';
 
 
 //create new object with the data entered
+
+const tutorial=()=>{
+    let d='This app saves your lists on your browser locally, you can exit the app anytime and your todos will be saved';
+    listArray.push(new list('Welcome',d));
+    let tit='This is the title of the todo click here to see the details';
+    let desc=  'This is the description, click here to edit';
+    let example= new todo(tit,desc);
+    listArray[0].toDo.push(example);
+}   
 const createList=()=>{
     const lst={
         title: document.getElementById('title').value,
@@ -20,9 +29,10 @@ const getToDo=()=>{
     const td={
         title: document.getElementById('todo-title').value,
         description: document.getElementById('todo-desc').value,
-        date: document.getElementById('todo-date').value
+        date: document.getElementById('todo-date').value,
+        prio: document.getElementById('priority').value
     };
-    let newObj= new todo(td.title,td.description,td.date);
+    let newObj= new todo(td.title,td.description,td.date,td.prio);
     return newObj
 };
 
@@ -54,7 +64,6 @@ const listInfo=(i)=>{
         h3: document.createElement('h3'),
         remove: newButton('Remove list','rmv-list'),
         edit: newButton('Edit', 'edit-list'),
-       // h4: document.createElement('h4'),
         desc: document.createElement('p'),
         title: document.createElement('h2'),
     }
@@ -71,7 +80,6 @@ const listInfo=(i)=>{
     
     info.title.textContent='My todos';
     info.h3.textContent=listArray[i]._title;
-    //info.h4.textContent=listArray[i]._date;
     info.desc.textContent= listArray[i]._description;
     info.remove.addEventListener('click', ()=>{
         removeList(i);
@@ -83,7 +91,7 @@ const listInfo=(i)=>{
         listForm(true,listArray[i]);
     });
 };
-//display when a list is clicked
+//what happens when a list is clicked
 const displayTodos=(index)=>{
     const tdEl={
         head: newDiv('my-todos'),
@@ -107,7 +115,7 @@ const displayTodos=(index)=>{
     });
     renderToDo(listArray[index]);  
 }
-//render array of nodes with all todos
+//render an array of nodes with all the todos generated
 const renderToDo=(list)=>{
     let content= list.toDo.map((x,i)=>{
         let td= newDiv('card');
@@ -118,6 +126,8 @@ const renderToDo=(list)=>{
         let desc= newSpan(`Description: ${x.description}`);
         let close=newDiv('close');
         let form= newDiv('form');
+        let color= x.getPrio();
+        td.style.backgroundColor=color;
         titDiv.appendChild(title);
         titDiv.appendChild(close);
         td.appendChild(titDiv);
@@ -136,7 +146,7 @@ const renderToDo=(list)=>{
             form.appendChild(todoForm(list,i));
             td.appendChild(form);
         }
-         function showDesc(){
+        function showDesc(){
             hide(descDiv);
          }
         titDiv.addEventListener('click',showDesc);
@@ -150,4 +160,4 @@ const renderToDo=(list)=>{
     });
 }
 
-export {createList,loadLists,displayTodos,listInfo,getToDo,renderToDo};
+export {createList,loadLists,displayTodos,listInfo,getToDo,renderToDo,tutorial};

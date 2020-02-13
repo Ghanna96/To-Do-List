@@ -1,10 +1,5 @@
-import{list} from './classes'
-
 let listArray= getStorage();
-// [ new list('Default List 1')
-//                 ,new list('Default List 2'),
-//                 new list('Default List 3')
-//             ];
+
 //create new list
 const addList=(obj)=>{
     listArray.push(obj);

@@ -2,22 +2,20 @@ import { format } from 'date-fns'
 //class to create objects in the to do list
 
 class todo{
-    constructor(title,description,date,priority,completed){
+    constructor(title,description,date,priority){
         this.title=title;
         this.description=description ? description : '';
         this.duedate=date;
         this.priority=priority;
-        this.completed=completed;
     }
-    // set date(date){
-    //     let format= /([0-2]\d{1}|3[0-1])\/(0\d{1}|1[0-2])\/(19|20)\d{2}/g;
-    //     if (date.match(format)){
-    //         this.date=date;
-    //     }else{
-    //         alert('wrong date format. (dd/mm/yyyy)');
-    //         return
-    //     }
-    // }
+    getPrio(){
+        switch(this.priority){
+            case 'none' : return '#fff'
+            case 'Casual': return '#e5ffc9'
+            case 'Important': return '#fff8c9'
+            case 'Urgent': return '#ffc9c9'
+        }
+    }
 }
 
 class list{
