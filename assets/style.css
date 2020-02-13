@@ -94,12 +94,6 @@ h1{
 .card{
     cursor: pointer;
 }
-.info1:hover{
-    background-color: #eee;
-}
-.info2:hover{
-    background-color: #dddddd;
-}
 .add{
     padding: 1em;
     margin-top: 2vh;
@@ -141,6 +135,21 @@ h1{
     color: #eee;
 }
 
+.Casual{
+    background-color: #e5ffc9;
+}
+.Important{
+    background-color:#fff8c9;
+}
+.Urgent{
+    background-color:#ffc9c9;
+}
+.None{
+    background-color:#fff;
+}
+.Casual:hover,.Important:hover,.Urgent:hover,.None:hover{
+    filter: brightness(90%);
+}
 /* #ffc9c9 red
 #fff8c9 yellow 
 #e5ffc9 green */
