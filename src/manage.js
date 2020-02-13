@@ -11,7 +11,8 @@ const tutorial=()=>{
     listArray.push(new list('Welcome',d));
     let tit='This is the title of the todo click here to see the details';
     let desc=  'This is the description, click here to edit';
-    let example= new todo(tit,desc);
+    let prio= 'Casual';
+    let example= new todo(tit,desc,'',prio);
     listArray[0].toDo.push(example);
 }   
 const createList=()=>{
@@ -126,8 +127,8 @@ const renderToDo=(list)=>{
         let desc= newSpan(`Description: ${x.description}`);
         let close=newDiv('close');
         let form= newDiv('form');
-        let color= x.prio;
-        td.style.backgroundColor=color;
+        let color= `${x.priority}`;
+        titDiv.classList.add(color);
         titDiv.appendChild(title);
         titDiv.appendChild(close);
         td.appendChild(titDiv);
@@ -161,3 +162,4 @@ const renderToDo=(list)=>{
 }
 
 export {createList,loadLists,displayTodos,listInfo,getToDo,renderToDo,tutorial};
+

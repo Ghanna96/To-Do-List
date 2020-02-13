@@ -8,14 +8,6 @@ class todo{
         this.duedate=date;
         this.priority=priority;
     }
-    get prio(){
-        switch(this.priority){
-            case 'none' : return '#fff'
-            case 'Casual': return '#e5ffc9'
-            case 'Important': return '#fff8c9'
-            case 'Urgent': return '#ffc9c9'
-        }
-    }
 }
 
 class list{

@@ -52,6 +52,7 @@ const todoForm=(list,n)=>{
         formElements.titleInput.value=ref.title;
         formElements.descInput.value=ref.description;
         formElements.dateInput.value=ref.duedate;
+        formElements.prioInput.value=ref.priority;
     }
     submit.addEventListener('click',()=>{
         // check if the function is called to edit or to add a todo
