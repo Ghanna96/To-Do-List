@@ -126,7 +126,7 @@ const renderToDo=(list)=>{
         let desc= newSpan(`Description: ${x.description}`);
         let close=newDiv('close');
         let form= newDiv('form');
-        let color= x.getPrio();
+        let color= x.prio;
         td.style.backgroundColor=color;
         titDiv.appendChild(title);
         titDiv.appendChild(close);

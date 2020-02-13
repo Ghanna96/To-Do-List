@@ -8,7 +8,7 @@ class todo{
         this.duedate=date;
         this.priority=priority;
     }
-    getPrio(){
+    get prio(){
         switch(this.priority){
             case 'none' : return '#fff'
             case 'Casual': return '#e5ffc9'
