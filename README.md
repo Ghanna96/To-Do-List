@@ -7,5 +7,6 @@ To Do List written by me using vanilla JavaScript and CSS, no framework was invo
 How to Use:
 
 -On the left side you find your lists, click on one to reveal its todos.
+
 -On the right side you manage your todos, click to see or edit the details.
 
